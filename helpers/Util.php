@@ -164,7 +164,7 @@ class Util
 	    return $encoded;  
 	}
 	
-	function list_files($dir)  
+	public static function list_files($dir)  
 	{  
 	    if(is_dir($dir))  
 	    {  
@@ -182,7 +182,7 @@ class Util
 	    }  
 	}
 	
-	function getRealIpAddr()  
+	public static function getRealIpAddr()  
 	{  
 	    if (!emptyempty($_SERVER['HTTP_CLIENT_IP']))  
 	    {  
@@ -200,7 +200,7 @@ class Util
 	    return $ip;  
 	}
         
-        function GetIP()
+        public static function GetIP()
         {
             if ( getenv("HTTP_CLIENT_IP") ) {
                 $ip = getenv("HTTP_CLIENT_IP");
@@ -222,14 +222,14 @@ class Util
 	*@default - URL of default gravatar to use 
 	*@rating - rating of Gravatar(G, PG, R, X) 
 	*/  
-	function show_gravatar($email, $size, $default, $rating)  
+	public static function show_gravatar($email, $size, $default, $rating)  
 	{  
 	    echo '<img src="http://www.gravatar.com/avatar.php?gravatar_id='.md5($email).  
 	        '&default='.$default.'&size='.$size.'&rating='.$rating.'" width="'.$size.'px"  
 	        height="'.$size.'px" />';  
 	} 
 	
-	function detect_city($ip) 
+	public static function detect_city($ip) 
 	{
         
         $default = 'UNKNOWN';
@@ -278,14 +278,22 @@ class Util
         
     }
     
-    function fb_fan_count($facebook_name)
+    public static function fb_fan_count($facebook_name)
 	{
 	    $data = json_decode(file_get_contents("https://graph.facebook.com/".$facebook_name));
 	    $likes = $data->likes;
 	    return $likes;
 	}
+
+    public static function percentage($part, $total)
+    {
+        if (!$total) {
+            return 0;
+        }
+        return $part / $total * 100;
+    }
 	
-	function get_client_language($availableLanguages, $default='en')
+	public static function get_client_language($availableLanguages, $default='en')
 	{
 		if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 			$langs=explode(',',$_SERVER['HTTP_ACCEPT_LANGUAGE']);
@@ -300,7 +308,7 @@ class Util
 		return $default;
 	}
 	
-	function my_twitter($username) 
+	public static function my_twitter($username) 
 	{
 	 	$no_of_tweets = 1;
 	 	$feed = "http://search.twitter.com/search.atom?q=from:" . $username . "&rpp=" . $no_of_tweets;
@@ -316,7 +324,7 @@ class Util
 		}	
 	}
 	
-	function qr_code($data, $type = "TXT", $size ='150', $ec='L', $margin='0')  
+	public static function qr_code($data, $type = "TXT", $size ='150', $ec='L', $margin='0')  
 	{
 	     $types = array("URL" => "http://", "TEL" => "TEL:", "TXT"=>"", "EMAIL" => "MAILTO:");
 	    if(!in_array($type,array("URL", "TEL", "TXT", "EMAIL")))
@@ -343,7 +351,7 @@ class Util
 	}
         
         // take a pdf file and change it to jpeg
-        function pdf_to_jpg($pdffile)
+        public static function pdf_to_jpg($pdffile)
         {
             // create Imagick object
             $imagick = new Imagick();

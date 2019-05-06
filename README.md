@@ -39,11 +39,11 @@ THIS IS IN DEVELOPMENT AND WILL BE REALEASED SOON so don't use it for now
 
 ## List of features
 
-- class Util
--- Display an avatar image using the Gravatar.com service
---
-- class SocialFunctions
--- get the latest tweet
+* class Util
+    * Display an avatar image using the Gravatar.com service
+
+* class SocialFunctions
+    * get the latest tweet of an account
 
 
 ## Examples
