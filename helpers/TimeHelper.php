@@ -102,6 +102,46 @@ class TimeHelper extends \yii\helpers\Inflector
         return $formatted;
     }
 
+    /*
+    **  Explode a time string and gives the value in seconds
+    */
+    public static function time_to_seconds($time)
+    {
+        $seconds = 0;
+        list($h,$m,$s) = explode(':',$time);  
+        $seconds = $s + (60*$m) + (3600*$h);
+        return $seconds;
+    }
+
+    // Get age from date of birth
+    public static function age($date){
+        $time = strtotime($date);
+        if($time === false){
+          return '';
+        }
+     
+        $year_diff = '';
+        $date = date('Y-m-d', $time);
+        list($year,$month,$day) = explode('-',$date);
+        $year_diff = date('Y') - $year;
+        $month_diff = date('m') - $month;
+        $day_diff = date('d') - $day;
+        if ($day_diff < 0 || $month_diff < 0) $year_diff--;
+     
+        return $year_diff;
+    } // get age from date of birth
+
+
+    //seconds to string
+    public static function secsToStr($secs) 
+    {
+        if($secs>=86400){$days=floor($secs/86400);$secs=$secs%86400;$r=$days.' day';if($days<>1){$r.='s';}if($secs>0){$r.=', ';}}
+        if($secs>=3600){$hours=floor($secs/3600);$secs=$secs%3600;$r.=$hours.' hour';if($hours<>1){$r.='s';}if($secs>0){$r.=', ';}}
+        if($secs>=60){$minutes=floor($secs/60);$secs=$secs%60;$r.=$minutes.' minute';if($minutes<>1){$r.='s';}if($secs>0){$r.=', ';}}
+        $r.=$secs.' second';if($secs<>1){$r.='s';}
+        return $r;
+    }
+
     /**
      * Initialize translations
      */

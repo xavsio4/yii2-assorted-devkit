@@ -37,15 +37,18 @@ Download the latest version here:
 
 THIS IS IN DEVELOPMENT AND WILL BE REALEASED SOON so don't use it for now
 
-##List of features
+## List of features
 
-- Display an avatar image using the Gravatar.com service
--
+- class Util
+-- Display an avatar image using the Gravatar.com service
+--
+- class SocialFunctions
+-- get the latest tweet
 
 
-##Examples
+## Examples
 
 
 ## License
 
-Look at 'LICENSE.md' file
+MIT License. Look at 'LICENSE.md' file

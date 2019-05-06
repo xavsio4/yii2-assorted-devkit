@@ -53,13 +53,6 @@ class Util
         return $hours.':'.sprintf("%02d",$mins).':'.sprintf("%02d",$secs);
     } 
 
-    public static function time_to_seconds($time)
-    {
-        $seconds = 0;
-        list($h,$m,$s) = explode(':',$time);  
-        $seconds = $s + (60*$m) + (3600*$h);
-        return $seconds;
-    }
 
     public static function base64url_encode($plainText) 
     {
@@ -81,15 +74,7 @@ class Util
         return $ip;
     }
 
-    //seconds to string
-    public static function secsToStr($secs) 
-    {
-        if($secs>=86400){$days=floor($secs/86400);$secs=$secs%86400;$r=$days.' day';if($days<>1){$r.='s';}if($secs>0){$r.=', ';}}
-        if($secs>=3600){$hours=floor($secs/3600);$secs=$secs%3600;$r.=$hours.' hour';if($hours<>1){$r.='s';}if($secs>0){$r.=', ';}}
-        if($secs>=60){$minutes=floor($secs/60);$secs=$secs%60;$r.=$minutes.' minute';if($minutes<>1){$r.='s';}if($secs>0){$r.=', ';}}
-        $r.=$secs.' second';if($secs<>1){$r.='s';}
-        return $r;
-    }
+    
 
     //distance between 2 points
     public static function getDistanceBetweenPointsNew($latitude1, $longitude1, $latitude2, $longitude2) {
@@ -105,30 +90,14 @@ class Util
         return compact('miles','feet','yards','kilometers','meters'); 
     }
 
-    // Get age from date of birth
-    function age($date){
-        $time = strtotime($date);
-        if($time === false){
-          return '';
-        }
-     
-        $year_diff = '';
-        $date = date('Y-m-d', $time);
-        list($year,$month,$day) = explode('-',$date);
-        $year_diff = date('Y') - $year;
-        $month_diff = date('m') - $month;
-        $day_diff = date('d') - $day;
-        if ($day_diff < 0 || $month_diff < 0) $year_diff--;
-     
-        return $year_diff;
-    } // get age from date of birth
+    
     
     /**
      * Returns the browser user agent string.
      *
      * @return string
      */
-    function getUserAgent()
+    public static function getUserAgent()
     {
         if (array_key_exists('HTTP_USER_AGENT', $_SERVER)) {
             $browser = strtolower($_SERVER['HTTP_USER_AGENT']);
@@ -143,7 +112,7 @@ class Util
      *
      * @return string
      */
-    public function buildVCard($model, $id)
+    public static function buildVCard($model, $id)
     {
         // init string
         $string = "BEGIN:VCARD\r\n";
@@ -161,7 +130,7 @@ class Util
         return $string;
     }
     
-    function encode_email($email='info@domain.com', $linkText='Contact Us', $attrs ='class="emailencoder"' )  
+    public static function encode_email($email='info@domain.com', $linkText='Contact Us', $attrs ='class="emailencoder"' )  
 	{  
 	    // remplazar aroba y puntos  
 	    $email = str_replace('@', '&#64;', $email);  
